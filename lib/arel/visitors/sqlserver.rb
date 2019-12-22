@@ -166,7 +166,7 @@ module Arel
           'FROM (',
           "SELECT #{core.set_quantifier ? 'DISTINCT DENSE_RANK()' : 'ROW_NUMBER()'} OVER (ORDER BY #{orders.map { |x| visit(x, a) }.join(', ')}) AS [__rn],",
           visit_Arel_Nodes_SelectStatementWithOutOffset(o, a, true),
-          ') AS [__rnt]',
+         ') AS [__rnt]',
           (visit(o.offset, a) if o.offset),
           'ORDER BY [__rnt].[__rn] ASC'
         ].compact.join ' '
